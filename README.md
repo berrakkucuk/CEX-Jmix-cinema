@@ -1,7 +1,8 @@
 # Cinema Booking System - Jmix Implementation
 
 ## Project Overview
-This project provides a cinema ticket booking system developed using **Jmix**. The application offers backend functionality for managing movies, seats, showtimes, and bookings, giving developers an example of how Jmix can be used to streamline the development of entity-based applications.
+This project provides a cinema ticket booking system developed using **Jmix**. 
+The application offers backend functionality for managing movies, seats, showtimes, and bookings.
 
 ### Table of Contents
 1. [Getting Started](#getting-started)
