@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://jmix.io/schema/flowui/menu">
+
+    <menu id="application" title="msg://com.company.cinema/menu.application.title" opened="true">
+        <item view="User.list" title="msg://com.company.cinema.view.user/UserListView.title"/>
+        <item view="Booking.list" title="msg://com.company.cinema.view.booking/bookingListView.title"/>
+        <item view="Customer.list" title="msg://com.company.cinema.view.customer/customerListView.title"/>
+        <item view="Movie.list" title="msg://com.company.cinema.view.movie/movieListView.title"/>
+        <item view="Screen.list" title="msg://com.company.cinema.view.screen/screenListView.title"/>
+        <item view="Seat.list" title="msg://com.company.cinema.view.seat/seatListView.title"/>
+        <item view="NewBookingView" title="msg://com.company.cinema.view.newbooking/newBookingView.title"/>
+        <item view="datatl_InfoValue.list" title="msg://com.company.cinema.view.infovalue/infoValueListView.title"/>
+        <item view="Booking.listCustomer2"
+              title="msg://com.company.cinema.view.booking/bookingListViewCustomer2.title"/>
+    </menu>
+
+</menu-config>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="cinema">
+        <createTable tableName="BOOKING">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_BOOKING"/>
+            </column>
+            <column name="CUSTOMER_ID" type="UUID"/>
+            <column name="SEAT_ID" type="UUID"/>
+            <column name="SCREEN_ID" type="UUID"/>
+            <column name="MOVIE_ID" type="UUID"/>
+            <column name="MOVIE_TIME" type="DATETIME"/>
+            <column name="PAYMENT_STATUS" type="VARCHAR(255)"/>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="cinema">
+        <createTable tableName="CUSTOMER">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_CUSTOMER"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="EMAIL" type="VARCHAR(255)"/>
+            <column name="PHONE_NUMBER" type="VARCHAR(255)"/>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="cinema">
+        <createTable tableName="SCREEN">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_SCREEN"/>
+            </column>
+            <column name="MOVIE_ID" type="UUID"/>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="TOTAL_SEATS" type="INT"/>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="4" author="cinema">
+        <createTable tableName="SEAT">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_SEAT"/>
+            </column>
+            <column name="SCREEN_ID" type="UUID"/>
+            <column name="SEAT_NUMBER" type="VARCHAR(255)"/>
+            <column name="SEAT_TYPE" type="VARCHAR(255)"/>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="5" author="cinema">
+        <createIndex indexName="IDX_BOOKING_CUSTOMER" tableName="BOOKING">
+            <column name="CUSTOMER_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="CUSTOMER_ID" baseTableName="BOOKING"
+                                 constraintName="FK_BOOKING_ON_CUSTOMER" referencedColumnNames="ID"
+                                 referencedTableName="CUSTOMER"/>
+    </changeSet>
+    <changeSet id="6" author="cinema">
+        <createIndex indexName="IDX_BOOKING_MOVIE" tableName="BOOKING">
+            <column name="MOVIE_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="MOVIE_ID" baseTableName="BOOKING" constraintName="FK_BOOKING_ON_MOVIE"
+                                 referencedColumnNames="ID" referencedTableName="MOVIE"/>
+    </changeSet>
+    <changeSet id="7" author="cinema">
+        <createIndex indexName="IDX_BOOKING_SCREEN" tableName="BOOKING">
+            <column name="SCREEN_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="SCREEN_ID" baseTableName="BOOKING"
+                                 constraintName="FK_BOOKING_ON_SCREEN" referencedColumnNames="ID"
+                                 referencedTableName="SCREEN"/>
+    </changeSet>
+    <changeSet id="8" author="cinema">
+        <createIndex indexName="IDX_BOOKING_SEAT" tableName="BOOKING">
+            <column name="SEAT_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="SEAT_ID" baseTableName="BOOKING" constraintName="FK_BOOKING_ON_SEAT"
+                                 referencedColumnNames="ID" referencedTableName="SEAT"/>
+    </changeSet>
+    <changeSet id="9" author="cinema">
+        <createIndex indexName="IDX_SCREEN_MOVIE" tableName="SCREEN">
+            <column name="MOVIE_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="MOVIE_ID" baseTableName="SCREEN" constraintName="FK_SCREEN_ON_MOVIE"
+                                 referencedColumnNames="ID" referencedTableName="MOVIE"/>
+    </changeSet>
+    <changeSet id="10" author="cinema">
+        <createIndex indexName="IDX_SEAT_SCREEN" tableName="SEAT">
+            <column name="SCREEN_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="SCREEN_ID" baseTableName="SEAT" constraintName="FK_SEAT_ON_SCREEN"
+                                 referencedColumnNames="ID" referencedTableName="SCREEN"/>
+    </changeSet>
+</databaseChangeLog>

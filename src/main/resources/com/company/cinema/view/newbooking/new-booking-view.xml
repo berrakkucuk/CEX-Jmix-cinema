@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://newBookingView.title">
+    <data>
+        <collection id="bookingsDc" class="com.company.cinema.entity.Booking">
+            <loader id="bookingsDl">
+                <query>
+                    <![CDATA[select e from Booking e]]>
+                </query>
+            </loader>
+            <fetchPlan extends="_base">
+                <property name="seat" fetchPlan="_base"/>
+                <property name="movie" fetchPlan="_base"/>
+                <property name="customer" fetchPlan="_base"/>
+            </fetchPlan>
+        </collection>
+    </data>
+    <layout>
+        <datePicker/>
+        <dataGrid id="bookingsDataGrid" dataContainer="bookingsDc" width="100%">
+            <actions>
+                <action id="add" type="list_add"/>
+                <action id="create" type="list_create"/>
+                <action id="edit" type="list_edit"/>
+                <action id="read" type="list_read"/>
+                <action id="remove" type="list_remove"/>
+            </actions>
+            <columns>
+                <column property="movieTime"/>
+                <column property="paymentStatus"/>
+                <column property="seat"/>
+                <column property="seat.seatNumber"/>
+                <column property="movie"/>
+                <column property="movie.title"/>
+                <column property="customer"/>
+                <column property="customer.name"/>
+                <column property="customer.phoneNumber"/>
+            </columns>
+        </dataGrid>
+    </layout>
+</view>

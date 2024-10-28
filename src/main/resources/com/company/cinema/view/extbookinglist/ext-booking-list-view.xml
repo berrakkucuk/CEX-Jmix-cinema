@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://com.company.cinema.view.booking/bookingListView.title"
+      extends="com/company/cinema/view/booking/booking-list-view.xml"
+      messagesGroup="com.company.cinema.view.booking">
+    <layout/>
+</view>

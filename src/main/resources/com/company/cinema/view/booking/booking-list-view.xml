@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://bookingListView.title"
+      focusComponent="bookingsDataGrid">
+    <data>
+        <collection id="bookingsDc"
+                    class="com.company.cinema.entity.Booking">
+            <fetchPlan extends="_base">
+                <property name="customer" fetchPlan="_base"/>
+                <property name="seat" fetchPlan="_base"/>
+                <property name="screen" fetchPlan="_base"/>
+                <property name="movie" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="bookingsDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from Booking e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="bookingsDl">
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button id="createBtn" action="bookingsDataGrid.create"/>
+            <button id="editBtn" action="bookingsDataGrid.edit"/>
+            <button id="removeBtn" action="bookingsDataGrid.remove"/>
+            <simplePagination id="pagination" dataLoader="bookingsDl"/>
+        </hbox>
+        <dataGrid id="bookingsDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="bookingsDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="create" type="list_create"/>
+                <action id="edit" type="list_edit"/>
+                <action id="remove" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column property="customer"/>
+                <column property="seat"/>
+                <column property="screen"/>
+                <column property="movie"/>
+                <column property="movieTime"/>
+                <column property="paymentStatus"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectBtn" action="selectAction"/>
+            <button id="discardBtn" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>

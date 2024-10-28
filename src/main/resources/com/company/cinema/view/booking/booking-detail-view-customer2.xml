@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://bookingDetailViewCustomer2.title"
+      focusComponent="form">
+    <data>
+        <instance id="bookingDc"
+                  class="com.company.cinema.entity.Booking">
+            <fetchPlan extends="_base">
+                <property name="seat" fetchPlan="_base"/>
+                <property name="movie" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="bookingDl"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <formLayout id="form" dataContainer="bookingDc">
+            <entityPicker id="seatField" property="seat">
+                <actions>
+                    <action id="entityLookup" type="entity_lookup"/>
+                    <action id="entityClear" type="entity_clear"/>
+                </actions>
+            </entityPicker>
+            <entityPicker id="movieField" property="movie">
+                <actions>
+                    <action id="entityLookup" type="entity_lookup"/>
+                    <action id="entityClear" type="entity_clear"/>
+                </actions>
+            </entityPicker>
+            <dateTimePicker id="movieTimeField" property="movieTime"/>
+            <textField id="paymentStatusField" property="paymentStatus"/>
+        </formLayout>
+        <hbox id="detailActions">
+            <button id="saveAndCloseBtn" action="saveAction"/>
+            <button id="closeBtn" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>
